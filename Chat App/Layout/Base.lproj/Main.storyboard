@@ -19,12 +19,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lua-kk-sg3">
-                                <rect key="frame" x="16" y="20" width="343" height="130"/>
+                                <rect key="frame" x="16" y="20" width="343" height="316"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="fE5-t3-kem"/>
+                                    <constraint firstAttribute="height" constant="316" id="fE5-t3-kem"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kEF-3E-xuD">
@@ -38,7 +38,13 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNf-qa-RUq">
                                 <rect key="frame" x="16" y="526" width="343" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Login Anonymously"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -46,7 +52,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kEF-3E-xuD" secondAttribute="trailing" constant="16" id="2QY-Tz-Vyq"/>
                             <constraint firstItem="Lua-kk-sg3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2UC-Kj-3Mq"/>
                             <constraint firstItem="uNf-qa-RUq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="7Xd-48-fCR"/>
-                            <constraint firstItem="kEF-3E-xuD" firstAttribute="top" secondItem="Lua-kk-sg3" secondAttribute="bottom" constant="312" id="CO0-PY-uu7"/>
+                            <constraint firstItem="kEF-3E-xuD" firstAttribute="top" secondItem="Lua-kk-sg3" secondAttribute="bottom" constant="126" id="CO0-PY-uu7"/>
                             <constraint firstItem="Lua-kk-sg3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="DDw-2m-2VC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uNf-qa-RUq" secondAttribute="bottom" constant="111" id="PmY-9y-vLJ"/>
                             <constraint firstItem="uNf-qa-RUq" firstAttribute="top" secondItem="kEF-3E-xuD" secondAttribute="bottom" constant="34" id="RKg-Yw-Ucp"/>
