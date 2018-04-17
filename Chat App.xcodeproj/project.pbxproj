@@ -103,7 +103,6 @@
 				9FB550C0208539ED00572565 /* Controller */,
 				9FB550BF208539E100572565 /* Layout */,
 				9FB55098208533C200572565 /* Assets.xcassets */,
-				9FB5509A208533C200572565 /* LaunchScreen.storyboard */,
 				9FB5509D208533C200572565 /* Info.plist */,
 				9FB55095208533C000572565 /* Chat_App.xcdatamodeld */,
 			);
@@ -132,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				9FB55092208533C000572565 /* Main.storyboard */,
+				9FB5509A208533C200572565 /* LaunchScreen.storyboard */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
