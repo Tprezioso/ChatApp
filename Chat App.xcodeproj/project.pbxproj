@@ -15,6 +15,9 @@
 		9FB5509C208533C200572565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FB5509A208533C200572565 /* LaunchScreen.storyboard */; };
 		9FB550A7208533C200572565 /* Chat_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB550A6208533C200572565 /* Chat_AppTests.swift */; };
 		9FB550B2208533C200572565 /* Chat_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB550B1208533C200572565 /* Chat_AppUITests.swift */; };
+		9FB550C2208690DB00572565 /* ChannelListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB550C1208690DB00572565 /* ChannelListTableViewController.swift */; };
+		9FB550C4208691FF00572565 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB550C3208691FF00572565 /* Channel.swift */; };
+		9FB550C62086923C00572565 /* CreateChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB550C52086923C00572565 /* CreateChannelCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		9FB550AD208533C200572565 /* Chat AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Chat AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB550B1208533C200572565 /* Chat_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat_AppUITests.swift; sourceTree = "<group>"; };
 		9FB550B3208533C200572565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FB550C1208690DB00572565 /* ChannelListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListTableViewController.swift; sourceTree = "<group>"; };
+		9FB550C3208691FF00572565 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		9FB550C52086923C00572565 /* CreateChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				9FB5508E208533C000572565 /* AppDelegate.swift */,
+				9FB550C720869A4C00572565 /* Modal */,
 				9FB550C0208539ED00572565 /* Controller */,
+				9FB550C1208690DB00572565 /* ChannelListTableViewController.swift */,
 				9FB550BF208539E100572565 /* Layout */,
 				9FB55098208533C200572565 /* Assets.xcassets */,
 				9FB5509D208533C200572565 /* Info.plist */,
@@ -130,6 +138,7 @@
 		9FB550BF208539E100572565 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
+				9FB550C52086923C00572565 /* CreateChannelCell.swift */,
 				9FB55092208533C000572565 /* Main.storyboard */,
 				9FB5509A208533C200572565 /* LaunchScreen.storyboard */,
 			);
@@ -142,6 +151,14 @@
 				9FB55090208533C000572565 /* LoginViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		9FB550C720869A4C00572565 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				9FB550C3208691FF00572565 /* Channel.swift */,
+			);
+			name = Modal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,8 +293,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FB55091208533C000572565 /* LoginViewController.swift in Sources */,
+				9FB550C4208691FF00572565 /* Channel.swift in Sources */,
 				9FB55097208533C000572565 /* Chat_App.xcdatamodeld in Sources */,
 				9FB5508F208533C000572565 /* AppDelegate.swift in Sources */,
+				9FB550C2208690DB00572565 /* ChannelListTableViewController.swift in Sources */,
+				9FB550C62086923C00572565 /* CreateChannelCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
