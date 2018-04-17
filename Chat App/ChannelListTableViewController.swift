@@ -35,18 +35,13 @@ class ChannelListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "NewChannel", for: indexPath)
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewChannel", for: indexPath)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExistingChannel", for: indexPath)
-//            let cell : UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "ExistingChannel")
             return cell
         }
-        // Configure the cell...
-
-//        return cell
     }
 
     /*
