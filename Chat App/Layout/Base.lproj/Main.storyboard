@@ -47,7 +47,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8mY-SU-ZKK"/>
-                                    <segue destination="eG5-Md-69f" kind="presentation" id="hnw-wF-r25"/>
+                                    <segue destination="eG5-Md-69f" kind="presentation" identifier="LoginToChat" id="hnw-wF-r25"/>
                                 </connections>
                             </button>
                         </subviews>

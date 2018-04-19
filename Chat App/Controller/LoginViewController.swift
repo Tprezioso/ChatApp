@@ -33,6 +33,17 @@ class LoginViewController: UIViewController {
 
 
     @IBAction func loginDidTouch(_ sender: Any) {
+        
+        if nameField?.text != "" { // 1
+            Auth.auth().signInAnonymously(completion: { (user, error) in // 2
+                if let err = error { // 3
+                    print(err.localizedDescription)
+                    return
+                }
+                
+                self.performSegue(withIdentifier: "LoginToChat", sender: nil) // 4
+            })
+        }
     }
 
 //    // MARK: - Notifications
