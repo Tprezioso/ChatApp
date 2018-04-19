@@ -46,6 +46,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="loginDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8mY-SU-ZKK"/>
                                     <segue destination="eG5-Md-69f" kind="presentation" id="hnw-wF-r25"/>
                                 </connections>
                             </button>
@@ -59,12 +60,17 @@
                             <constraint firstItem="Lua-kk-sg3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="DDw-2m-2VC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uNf-qa-RUq" secondAttribute="bottom" constant="111" id="PmY-9y-vLJ"/>
                             <constraint firstItem="uNf-qa-RUq" firstAttribute="top" secondItem="kEF-3E-xuD" secondAttribute="bottom" constant="34" id="RKg-Yw-Ucp"/>
+                            <constraint firstItem="uNf-qa-RUq" firstAttribute="width" secondItem="kEF-3E-xuD" secondAttribute="width" id="ToM-fP-UfH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uNf-qa-RUq" secondAttribute="trailing" constant="16" id="gCY-pV-LKx"/>
                             <constraint firstItem="kEF-3E-xuD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="jnb-vD-c6B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lua-kk-sg3" secondAttribute="trailing" constant="16" id="nsf-1s-DgQ"/>
+                            <constraint firstItem="kEF-3E-xuD" firstAttribute="height" secondItem="uNf-qa-RUq" secondAttribute="height" id="ut6-7r-zFz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="nameField" destination="kEF-3E-xuD" id="oeG-qB-ahU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,6 +10,7 @@
 		0840896EC50BE81D1B615642 /* Pods_Chat_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 724D9BC24638C2A37CC88A13 /* Pods_Chat_App.framework */; };
 		60AE4A32208043B07D8A42A5 /* Pods_Chat_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B5580706F7D12E005EF9F20 /* Pods_Chat_AppUITests.framework */; };
 		756EBC9688BF4281ACC25DF3 /* Pods_Chat_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CEA4212212086BF6047F13 /* Pods_Chat_AppTests.framework */; };
+		9FA00E8120892DC900E4B96C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FA00E8020892DC900E4B96C /* GoogleService-Info.plist */; };
 		9FB5508F208533C000572565 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5508E208533C000572565 /* AppDelegate.swift */; };
 		9FB55091208533C000572565 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB55090208533C000572565 /* LoginViewController.swift */; };
 		9FB55094208533C000572565 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FB55092208533C000572565 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		32987A8B43F581BC7849CE35 /* Pods-Chat App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chat App/Pods-Chat App.release.xcconfig"; sourceTree = "<group>"; };
 		394DA161A3387EDCBA0BFC02 /* Pods-Chat AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat AppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chat AppUITests/Pods-Chat AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		724D9BC24638C2A37CC88A13 /* Pods_Chat_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FA00E8020892DC900E4B96C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9FB5508B208533C000572565 /* Chat App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chat App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB5508E208533C000572565 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FB55090208533C000572565 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -148,9 +150,9 @@
 				9FB5508E208533C000572565 /* AppDelegate.swift */,
 				9FB550C720869A4C00572565 /* Modal */,
 				9FB550C0208539ED00572565 /* Controller */,
-				9FB550C1208690DB00572565 /* ChannelListTableViewController.swift */,
 				9FB550BF208539E100572565 /* Layout */,
 				9FB55098208533C200572565 /* Assets.xcassets */,
+				9FA00E8020892DC900E4B96C /* GoogleService-Info.plist */,
 				9FB5509D208533C200572565 /* Info.plist */,
 				9FB55095208533C000572565 /* Chat_App.xcdatamodeld */,
 			);
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				9FB55090208533C000572565 /* LoginViewController.swift */,
+				9FB550C1208690DB00572565 /* ChannelListTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FA00E8120892DC900E4B96C /* GoogleService-Info.plist in Resources */,
 				9FB5509C208533C200572565 /* LaunchScreen.storyboard in Resources */,
 				9FB55099208533C200572565 /* Assets.xcassets in Resources */,
 				9FB55094208533C000572565 /* Main.storyboard in Resources */,
@@ -603,7 +607,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				INFOPLIST_FILE = "Chat App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.tom.Chat-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -619,7 +626,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				INFOPLIST_FILE = "Chat App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.tom.Chat-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -636,7 +646,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				INFOPLIST_FILE = "Chat AppTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.tom.Chat-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -654,7 +668,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				INFOPLIST_FILE = "Chat AppTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.tom.Chat-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -671,7 +689,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				INFOPLIST_FILE = "Chat AppUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.tom.Chat-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -688,7 +710,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				INFOPLIST_FILE = "Chat AppUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.tom.Chat-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
