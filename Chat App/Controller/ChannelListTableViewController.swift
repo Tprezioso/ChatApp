@@ -7,8 +7,18 @@
 //
 
 import UIKit
+import Firebase
+
+enum Section: Int {
+    case createNewChannelSection = 0
+    case currentChannelsSection
+}
 
 class ChannelListTableViewController: UITableViewController {
+    var senderDisplayNmae: String?
+    var newChannelTextField: UITextField?
+    private var channels: [Channel] = []
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
