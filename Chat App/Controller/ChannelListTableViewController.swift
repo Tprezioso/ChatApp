@@ -18,28 +18,35 @@ class ChannelListTableViewController: UITableViewController {
     var senderDisplayNmae: String?
     var newChannelTextField: UITextField?
     private var channels: [Channel] = []
+    private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
+    private var channelRefHandle: DatabaseHandle?
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        channels.append(Channel(id: "1", name: "Channel1"))
-        channels.append(Channel(id: "2", name: "Channel2"))
-        channels.append(Channel(id: "3", name: "Channel3"))
-        self.tableView.reloadData()
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        title = "RW RIC"
+        observeChannels()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    deinit {
+        if let refHandle = channelRefHandle {
+            channelRef.removeObserver(withHandle: refHandle)
+        }
+    }
+    
+    // MARK: Firebase related methods
+    private func observeChannels() {
+        // Use the observe method to listen for new
+        // channels being written to the Firebase DB
+        channelRefHandle = channelRef.observe(.childAdded, with: { (snapshot) -> Void in // 1
+            let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
+            let id = snapshot.key
+            if let name = channelData["name"] as! String?, name.count > 0 { // 3
+                self.channels.append(Channel(id: id, name: name))
+                self.tableView.reloadData()
+            } else {
+                print("Error! Could not decode channel data")
+            }
+        })
     }
 
     // MARK: - Table view data source
