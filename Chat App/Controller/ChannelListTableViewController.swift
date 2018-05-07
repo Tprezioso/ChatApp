@@ -18,7 +18,7 @@ class ChannelListTableViewController: UITableViewController {
     var senderDisplayNmae: String?
     var newChannelTextField: UITextField?
     private var channels: [Channel] = []
-    private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
+    var channelRef: DatabaseReference = Database.database().reference().child("channels")
     private var channelRefHandle: DatabaseHandle?
     
     override func viewDidLoad() {
@@ -48,7 +48,17 @@ class ChannelListTableViewController: UITableViewController {
             }
         })
     }
-
+    // MARK: - TODO might need to fix this and see what happens
+    
+    @IBAction func createChannel(_ sender: AnyObject) {
+        if let name = newChannelTextField?.text { // 1
+            let newChannelRef = channelRef.childByAutoId() // 2
+            let channelItem = [ // 3
+                "name": name
+            ]
+            newChannelRef.setValue(channelItem) // 4
+        }
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -127,4 +137,11 @@ class ChannelListTableViewController: UITableViewController {
     }
     */
 
+    // MARK: - TOFIX problem with segue to chat with code below!
+    //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if indexPath.section == Section.currentChannelsSection.rawValue {
+//            let channel = channels[(indexPath as NSIndexPath).row]
+//            self.performSegue(withIdentifier: "ShowChannel", sender: channel)
+//        }
+//    }
 }

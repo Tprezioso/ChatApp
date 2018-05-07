@@ -105,7 +105,7 @@
                                             </constraints>
                                             <state key="normal" title="Create"/>
                                             <connections>
-                                                <action selector="newChannelButton:" destination="VEK-1k-obC" eventType="touchUpInside" id="9nl-sw-15Y"/>
+                                                <action selector="createChannel:" destination="owS-LM-IYi" eventType="touchUpInside" id="b2q-yr-318"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -118,7 +118,6 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="newChannelButtonOutlet" destination="Cnq-q3-5lf" id="qaH-cW-nF5"/>
                                     <outlet property="newChannelNameField" destination="zWu-GX-KOJ" id="pzV-TS-KZb"/>
                                 </connections>
                             </tableViewCell>
