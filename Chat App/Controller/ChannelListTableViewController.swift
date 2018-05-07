@@ -137,11 +137,11 @@ class ChannelListTableViewController: UITableViewController {
     }
     */
 
-    // MARK: - TOFIX problem with segue to chat with code below!
-    //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if indexPath.section == Section.currentChannelsSection.rawValue {
-//            let channel = channels[(indexPath as NSIndexPath).row]
-//            self.performSegue(withIdentifier: "ShowChannel", sender: channel)
-//        }
-//    }
+    // MARK: - segue to chat 
+        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == Section.currentChannelsSection.rawValue {
+            let channel = channels[(indexPath as NSIndexPath).row]
+            self.performSegue(withIdentifier: "ShowChannel", sender: channel)
+        }
+    }
 }
