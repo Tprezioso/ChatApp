@@ -22,6 +22,7 @@
 		9FB550C2208690DB00572565 /* ChannelListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB550C1208690DB00572565 /* ChannelListTableViewController.swift */; };
 		9FB550C4208691FF00572565 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB550C3208691FF00572565 /* Channel.swift */; };
 		9FB550C62086923C00572565 /* CreateChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB550C52086923C00572565 /* CreateChannelCell.swift */; };
+		9FF668D920A2359C002F1D97 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF668D820A2359C002F1D97 /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		9FB550C1208690DB00572565 /* ChannelListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListTableViewController.swift; sourceTree = "<group>"; };
 		9FB550C3208691FF00572565 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		9FB550C52086923C00572565 /* CreateChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelCell.swift; sourceTree = "<group>"; };
+		9FF668D820A2359C002F1D97 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		BE4C410CEF11CD69A996BE30 /* Pods-Chat App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chat App/Pods-Chat App.debug.xcconfig"; sourceTree = "<group>"; };
 		F0CEA4212212086BF6047F13 /* Pods_Chat_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E50A7D9F9E2D316B02A42E /* Pods-Chat AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat AppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chat AppTests/Pods-Chat AppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				9FB55090208533C000572565 /* LoginViewController.swift */,
 				9FB550C1208690DB00572565 /* ChannelListTableViewController.swift */,
+				9FF668D820A2359C002F1D97 /* ChatViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				9FB55091208533C000572565 /* LoginViewController.swift in Sources */,
 				9FB550C4208691FF00572565 /* Channel.swift in Sources */,
 				9FB55097208533C000572565 /* Chat_App.xcdatamodeld in Sources */,
+				9FF668D920A2359C002F1D97 /* ChatViewController.swift in Sources */,
 				9FB5508F208533C000572565 /* AppDelegate.swift in Sources */,
 				9FB550C2208690DB00572565 /* ChannelListTableViewController.swift in Sources */,
 				9FB550C62086923C00572565 /* CreateChannelCell.swift in Sources */,

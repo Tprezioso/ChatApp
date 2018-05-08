@@ -127,15 +127,21 @@ class ChannelListTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        if let channel = sender as? Channel {
+            let chatVc = segue.destination as! ChatViewController
+            
+            chatVc.senderDisplayName = senderDisplayNmae
+            chatVc.channel = channel
+            chatVc.channelRef = channelRef.child(channel.id)
+        }
+
     }
-    */
 
     // MARK: - segue to chat 
         override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
