@@ -18,6 +18,7 @@ class ChatViewController: JSQMessagesViewController {
             title = channel?.name
         }
     }
+    var messages = [JSQMessage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,13 @@ class ChatViewController: JSQMessagesViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
+        return messages[indexPath.item]
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return messages.count
+    }
     /*
     // MARK: - Navigation
 
