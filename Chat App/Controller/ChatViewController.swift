@@ -19,23 +19,40 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     var messages = [JSQMessage]()
+    lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
+    lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.senderId = Auth.auth().currentUser?.uid
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
+    }
+
+    // MARK: - Messaging
+    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
+    }
+    
+    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
+        let message = messages[indexPath.item] // 1
+        if message.senderId == senderId { // 2
+            return outgoingBubbleImageView
+        } else { // 3
+            return incomingBubbleImageView
+        }
     }
     /*
     // MARK: - Navigation
