@@ -54,6 +54,7 @@ class ChatViewController: JSQMessagesViewController {
             return incomingBubbleImageView
         }
     }
+
     /*
     // MARK: - Navigation
 
