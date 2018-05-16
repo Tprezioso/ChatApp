@@ -29,18 +29,6 @@ class ChatViewController: JSQMessagesViewController {
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        // Test code below .... DELETE AFTER TEST!!!!
-        // messages from someone else
-        addMessage(withId: "foo", name: "Mr.Bolt", text: "I am so fast!")
-        // messages sent from local sender
-        addMessage(withId: senderId, name: "Me", text: "I bet I can run faster than you!")
-        addMessage(withId: senderId, name: "Me", text: "I like to run!")
-        // animates the receiving of a new message on the view
-        finishReceivingMessage()
-    }
-
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
@@ -69,6 +57,24 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
+    // MARK: - Sending Message
+    private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
+    private var newMessageRefHandle: DatabaseHandle?
+    
+    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        let itemRef = messageRef.childByAutoId() // 1
+        let messageItem = [ // 2
+            "senderId": senderId!,
+            "senderName": senderDisplayName!,
+            "text": text!,
+            ]
+        
+        itemRef.setValue(messageItem) // 3
+        
+        JSQSystemSoundPlayer.jsq_playMessageSentSound() // 4
+        
+        finishSendingMessage() // 5
+    }
     // MARK: - New Message
     private func addMessage(withId id: String, name: String, text: String){
         if let message = JSQMessage(senderId: id, displayName: name, text: text){
