@@ -69,6 +69,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="bottomLayoutGuideConstraint" destination="PmY-9y-vLJ" id="BJp-oi-BjZ"/>
                         <outlet property="nameField" destination="kEF-3E-xuD" id="oeG-qB-ahU"/>
                     </connections>
                 </viewController>
