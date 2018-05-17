@@ -62,19 +62,19 @@ class ChatViewController: JSQMessagesViewController {
     private var newMessageRefHandle: DatabaseHandle?
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        let itemRef = messageRef.childByAutoId() // 1
-        let messageItem = [ // 2
+        let itemRef = messageRef.childByAutoId()
+        let messageItem = [
             "senderId": senderId!,
             "senderName": senderDisplayName!,
             "text": text!,
             ]
+        itemRef.setValue(messageItem)
         
-        itemRef.setValue(messageItem) // 3
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
-        JSQSystemSoundPlayer.jsq_playMessageSentSound() // 4
-        
-        finishSendingMessage() // 5
+        finishSendingMessage()
     }
+    
     // MARK: - New Message
     private func addMessage(withId id: String, name: String, text: String){
         if let message = JSQMessage(senderId: id, displayName: name, text: text){
