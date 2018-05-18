@@ -11,14 +11,13 @@ import Firebase
 
 class LoginViewController: UIViewController {
     @IBOutlet var nameField: UITextField!
+    // This Constraint is connected from storyboards for the view to move when keyboard pops up
+    @IBOutlet var bottomLayoutGuideConstraint: NSLayoutConstraint!
     // MARK: View Lifecycle
 
-    @IBOutlet var bottomLayoutGuideConstraint: NSLayoutConstraint!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blue
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,7 +34,6 @@ class LoginViewController: UIViewController {
 
 
     @IBAction func loginDidTouch(_ sender: Any) {
-        
         if nameField?.text != "" { // 1
             Auth.auth().signInAnonymously(completion: { (user, error) in // 2
                 if let err = error { // 3
@@ -56,8 +54,8 @@ class LoginViewController: UIViewController {
         
         channelVc.senderDisplayNmae = nameField?.text // 3
     }
-     //MARK: - Notifications
-
+    
+    // MARK: - Notifications
     @objc func keyboardWillShowNotification(_ notification: Notification) {
         let keyboardEndFrame = ((notification as NSNotification).userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let convertedKeyboardEndFrame = view.convert(keyboardEndFrame, from: view.window)
@@ -67,6 +65,5 @@ class LoginViewController: UIViewController {
     @objc func keyboardWillHideNotification(_ notification: Notification) {
         bottomLayoutGuideConstraint.constant = 48
     }
-
 }
 
