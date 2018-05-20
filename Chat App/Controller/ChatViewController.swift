@@ -83,7 +83,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     // MARK: Query Typing User
-    private lazy var usersTypingQuery: FIRDatabaseQuery =
+    private lazy var usersTypingQuery: DatabaseQuery =
         self.channelRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
 
     // MARK: - Messaging
