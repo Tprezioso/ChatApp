@@ -44,7 +44,7 @@ class ChatViewController: JSQMessagesViewController {
         return messages.count
     }
     
-    // MARK: - Is user typing check & user is typing
+    // MARK: - User Is Typing Indicator
     override func textViewDidChange(_ textView: UITextView) {
         super.textViewDidChange(textView)
         // If the text is not empty, the user is typing
@@ -70,7 +70,21 @@ class ChatViewController: JSQMessagesViewController {
         let typingIndicatorRef = channelRef!.child("typingIndicator")
         userIsTypingRef = typingIndicatorRef.child(senderId)
         userIsTypingRef.onDisconnectRemoveValue()
+        usersTypingQuery.observe(.value) { (data: DataSnapshot) in
+            // 2 You're the only one typing, don't show the indicator
+            if data.childrenCount == 1 && self.isTyping {
+                return
+            }
+            
+            // 3 Are there others typing?
+            self.showTypingIndicator = data.childrenCount > 0
+            self.scrollToBottom(animated: true)
+        }
     }
+    
+    // MARK: Query Typing User
+    private lazy var usersTypingQuery: FIRDatabaseQuery =
+        self.channelRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
 
     // MARK: - Messaging
     private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
