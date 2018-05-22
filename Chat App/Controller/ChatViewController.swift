@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import JSQMessagesViewController
+import Photos
 
 class ChatViewController: JSQMessagesViewController {
   
@@ -21,6 +22,7 @@ class ChatViewController: JSQMessagesViewController {
     var messages = [JSQMessage]()
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
+    lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://chatapp-25281.appspot.com")
     
     override func viewDidLoad() {
         super.viewDidLoad()
