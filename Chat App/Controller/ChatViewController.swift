@@ -23,6 +23,7 @@ class ChatViewController: JSQMessagesViewController {
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://chatapp-25281.appspot.com")
+    private let imageURLNotSetKey = "NOTSET"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,6 +133,28 @@ class ChatViewController: JSQMessagesViewController {
         if let message = JSQMessage(senderId: id, displayName: name, text: text){
             messages.append(message)
         }
+    }
+    
+    // MARK: - Sending an Image
+    func sendPhotoMessage() -> String? {
+        let itemRef = messageRef.childByAutoId()
+        
+        let messageItem = [
+            "photoURL": imageURLNotSetKey,
+            "senderId": senderId!,
+            ]
+        
+        itemRef.setValue(messageItem)
+        
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        
+        finishSendingMessage()
+        return itemRef.key
+    }
+     // Update message for image
+    func setImageURL(_ url: String, forPhotoMessageWithKey key: String) {
+        let itemRef = messageRef.child(key)
+        itemRef.updateChildValues(["photoURL": url])
     }
     
     // MARK: - Set message bubble text color
