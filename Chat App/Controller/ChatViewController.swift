@@ -157,6 +157,18 @@ class ChatViewController: JSQMessagesViewController {
         itemRef.updateChildValues(["photoURL": url])
     }
     
+    override func didPressAccessoryButton(_ sender: UIButton) {
+        let picker = UIImagePickerController()
+        picker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
+            picker.sourceType = UIImagePickerControllerSourceType.camera
+        } else {
+            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        }
+        
+        present(picker, animated: true, completion:nil)
+    }
+    
     // MARK: - Set message bubble text color
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
@@ -209,4 +221,68 @@ class ChatViewController: JSQMessagesViewController {
     }
     */
 
+}
+// MARK: Image Picker Delegate
+extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        picker.dismiss(animated: true, completion:nil)
+        
+        // 1
+        if let photoReferenceUrl = info[UIImagePickerControllerPHAsset] as? URL {
+            // Handle picking a Photo from the Photo Library
+            // 2
+            let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
+            let asset = assets.firstObject
+            
+            // 3
+            if let key = sendPhotoMessage() {
+                // 4
+                asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
+                    let imageFileURL = contentEditingInput?.fullSizeImageURL
+                    
+                    // 5
+                    let path = "\(String(describing: Auth.auth().currentUser?.uid))/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
+                    
+                    // 6
+                    self.storageRef.child(path).putFile(from: imageFileURL!, metadata: nil) { (metadata, error) in
+                        if let error = error {
+                            print("Error uploading photo: \(error.localizedDescription)")
+                            return
+                        }
+                        // 7
+                        self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
+                    }
+                })
+            }
+        } else {
+            // Handle picking a Photo from the Camera - TODO
+            // 1
+            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            // 2
+            if let key = sendPhotoMessage() {
+                // 3
+                let imageData = UIImageJPEGRepresentation(image, 1.0)
+                // 4
+                let imagePath = Auth.auth().currentUser!.uid + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+                // 5
+                let metadata = StorageMetadata()
+                metadata.contentType = "image/jpeg"
+                // 6
+                storageRef.child(imagePath).putData(imageData!, metadata: metadata) { (metadata, error) in
+                    if let error = error {
+                        print("Error uploading photo: \(error)")
+                        return
+                    }
+                    // 7
+                    self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
+                }
+            }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion:nil)
+    }
 }
