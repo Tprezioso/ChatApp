@@ -232,7 +232,7 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         // 1
         if let photoReferenceUrl = info[UIImagePickerControllerPHAsset] as? URL {
             // Handle picking a Photo from the Photo Library
-            // 2
+            // TODO: This code below will be deprecated and we need to find another way to fix this think
             let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
             let asset = assets.firstObject
             
