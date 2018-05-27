@@ -24,6 +24,8 @@ class ChatViewController: JSQMessagesViewController {
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://chatapp-25281.appspot.com")
     private let imageURLNotSetKey = "NOTSET"
+    private var updatedMessageRefHandle: DatabaseHandle?
+    private var photoMessageMap = [String: JSQPhotoMediaItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,6 +130,7 @@ class ChatViewController: JSQMessagesViewController {
         isTyping = false
     }
     
+    
     // MARK: - New Message
     private func addMessage(withId id: String, name: String, text: String){
         if let message = JSQMessage(senderId: id, displayName: name, text: text){
@@ -169,6 +172,18 @@ class ChatViewController: JSQMessagesViewController {
         present(picker, animated: true, completion:nil)
     }
     
+    private func addPhotoMessage(withId id: String, key: String, mediaItem: JSQPhotoMediaItem) {
+        if let message = JSQMessage(senderId: id, displayName: "", media: mediaItem) {
+            messages.append(message)
+            
+            if (mediaItem.image == nil) {
+                photoMessageMap[key] = mediaItem
+            }
+            
+            collectionView.reloadData()
+        }
+    }
+    
     // MARK: - Set message bubble text color
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
@@ -205,12 +220,73 @@ class ChatViewController: JSQMessagesViewController {
                 
                 // 5
                 self.finishReceivingMessage()
-            } else {
+            }else if let id = messageData["senderId"] as String?,
+                let photoURL = messageData["photoURL"] as String? { // 1
+                // 2
+                if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
+                    // 3
+                    self.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
+                    // 4
+                    if photoURL.hasPrefix("gs://") {
+                        self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
+                    }
+                }
+            }
+             else {
                 print("Error! Could not decode message data")
             }
         })
+        // We can also use the observer method to listen for
+        // changes to existing messages.
+        // We use this to be notified when a photo has been stored
+        // to the Firebase Storage, so we can update the message data
+        updatedMessageRefHandle = messageRef.observe(.childChanged, with: { (snapshot) in
+            let key = snapshot.key
+            let messageData = snapshot.value as! Dictionary<String, String> // 1
+            
+            if let photoURL = messageData["photoURL"] as String? { // 2
+                // The photo has been updated.
+                if let mediaItem = self.photoMessageMap[key] { // 3
+                    self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key) // 4
+                }
+            }
+        })
     }
-
+    
+    private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
+        // 1
+        let storageRef = Storage.storage().reference(forURL: photoURL)
+        
+        // 2
+        storageRef.getData(maxSize: INT64_MAX){ (data, error) in
+            if let error = error {
+                print("Error downloading image data: \(error)")
+                return
+            }
+            
+            // 3
+            storageRef.getMetadata(completion: { (metadata, metadataErr) in
+                if let error = metadataErr {
+                    print("Error downloading metadata: \(error)")
+                    return
+                }
+                
+                // 4
+                if (metadata?.contentType == "image/gif") {
+                    mediaItem.image = UIImage(data: data!)
+                } else {
+                    mediaItem.image = UIImage.init(data: data!)
+                }
+                self.collectionView.reloadData()
+                
+                // 5
+                guard key != nil else {
+                    return
+                }
+                self.photoMessageMap.removeValue(forKey: key!)
+            })
+        }
+    }
     /*
     // MARK: - Navigation
 
@@ -220,6 +296,15 @@ class ChatViewController: JSQMessagesViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    deinit {
+        if let refHandle = newMessageRefHandle {
+            messageRef.removeObserver(withHandle: refHandle)
+        }
+        
+        if let refHandle = updatedMessageRefHandle {
+            messageRef.removeObserver(withHandle: refHandle)
+        }
+    }
 
 }
 // MARK: Image Picker Delegate
