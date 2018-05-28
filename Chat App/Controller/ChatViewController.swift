@@ -220,7 +220,7 @@ class ChatViewController: JSQMessagesViewController {
                 
                 // 5
                 self.finishReceivingMessage()
-            }else if let id = messageData["senderId"] as String?,
+            } else if let id = messageData["senderId"] as String?,
                 let photoURL = messageData["photoURL"] as String? { // 1
                 // 2
                 if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
