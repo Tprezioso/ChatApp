@@ -58,6 +58,7 @@ class ChannelListTableViewController: UITableViewController {
             ]
             newChannelRef.setValue(channelItem) // 4
         }
+        newChannelTextField?.text = ""
     }
     // MARK: - Table view data source
 
