@@ -37,10 +37,10 @@ class ChannelListTableViewController: UITableViewController {
     private func observeChannels() {
         // Use the observe method to listen for new
         // channels being written to the Firebase DB
-        channelRefHandle = channelRef.observe(.childAdded, with: { (snapshot) -> Void in // 1
-            let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
+        channelRefHandle = channelRef.observe(.childAdded, with: { (snapshot) -> Void in
+            let channelData = snapshot.value as! Dictionary<String, AnyObject>
             let id = snapshot.key
-            if let name = channelData["name"] as! String?, name.count > 0 { // 3
+            if let name = channelData["name"] as! String?, name.count > 0 {
                 self.channels.append(Channel(id: id, name: name))
                 self.tableView.reloadData()
             } else {
@@ -51,12 +51,12 @@ class ChannelListTableViewController: UITableViewController {
     // MARK: - TODO might need to fix this and see what happens
     
     @IBAction func createChannel(_ sender: AnyObject) {
-        if let name = newChannelTextField?.text { // 1
-            let newChannelRef = channelRef.childByAutoId() // 2
-            let channelItem = [ // 3
+        if let name = newChannelTextField?.text {
+            let newChannelRef = channelRef.childByAutoId()
+            let channelItem = [
                 "name": name
             ]
-            newChannelRef.setValue(channelItem) // 4
+            newChannelRef.setValue(channelItem)
         }
         newChannelTextField?.text = ""
     }

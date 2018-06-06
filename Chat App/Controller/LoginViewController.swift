@@ -34,14 +34,14 @@ class LoginViewController: UIViewController {
 
 
     @IBAction func loginDidTouch(_ sender: Any) {
-        if nameField?.text != "" { // 1
-            Auth.auth().signInAnonymously(completion: { (user, error) in // 2
-                if let err = error { // 3
+        if nameField?.text != "" {
+            Auth.auth().signInAnonymously(completion: { (user, error) in
+                if let err = error {
                     print(err.localizedDescription)
                     return
                 }
                 
-                self.performSegue(withIdentifier: "LoginToChat", sender: nil) // 4
+                self.performSegue(withIdentifier: "LoginToChat", sender: nil)
             })
         }
     }
@@ -49,10 +49,10 @@ class LoginViewController: UIViewController {
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        let navVc = segue.destination as! UINavigationController // 1
-        let channelVc = navVc.viewControllers.first as! ChannelListTableViewController // 2
+        let navVc = segue.destination as! UINavigationController
+        let channelVc = navVc.viewControllers.first as! ChannelListTableViewController
         
-        channelVc.senderDisplayNmae = nameField?.text // 3
+        channelVc.senderDisplayNmae = nameField?.text
     }
     
     // MARK: - Notifications
